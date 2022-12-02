@@ -1,6 +1,7 @@
 import os
 import requests
 from bs4 import BeautifulSoup
+from tqdm import tqdm
 
 def get_content_website(page: int, data_dir='data'):
     if not os.path.exists(data_dir):
@@ -18,7 +19,7 @@ def get_urls(data_dir='data'):
     if os.path.exists('urls.txt'):
         os.remove('urls.txt')
 
-    for page in range(1, 26):
+    for page in tqdm(range(1, 27), desc="Getting URLs and witing it to urls.txt"):
         html_file = f"{data_dir}/website-page-{page}.html"
         if not os.path.exists(html_file):
             get_content_website(page)

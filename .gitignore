@@ -1,2 +1,5 @@
-env/*
-data/*
+env
+data
+__pycache__
+*.pyc
+upa3.zip
