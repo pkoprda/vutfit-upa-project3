@@ -8,7 +8,7 @@ def get_product_page(product_url):
     product_url = product_url[:-1]
     request = requests.get(product_url, headers=headers)
     soup = BeautifulSoup(request.content, 'html.parser')
-    
+
     try:
         product_name = soup.body.find('h1').span.contents[0].strip()
         product_price = soup.body.find('div', attrs={'class': "ps-dell-price ps-simplified"})
@@ -21,8 +21,7 @@ def get_product_page(product_url):
         product_price = product_price.contents[0].strip()
 
     with open('data.tsv', 'a') as data_file:
-            data_file.write(f"{product_url}\t{product_name}\t{product_price}\n")
-    
+        data_file.write(f"{product_url}\t{product_name}\t{product_price}\n")
 
 def get_name_price():
     if os.path.exists('data.tsv'):
